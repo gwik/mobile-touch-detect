@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script type="text/javascript" src="mobile-touch-detect.js">
+  </script>
+</head>
+<body>
+  <script type="text/javascript">
+    var printinfo = function() {
+      var dim = getScreenDimensions();
+      document.write('<p>screen resolution is ' + dim.width + 'x' + dim.height + '</p>');
+      var orientation = getOrientation();
+
+      if (orientation == ORIENTATION_LANDSCAPE) {
+        document.write('<p>orientation is landscape</p>');
+      } else {
+        document.write('<p>orientation is portrait</p>');
+      }
+
+      switch(isTouch()) {
+        case TOUCH_YES:
+          document.write('<p>your device has a touch screen.</p>');
+          break;
+        case TOUCH_NO:
+          document.write('<p>your device has no touch screen.</p>');
+          break;
+        case TOUCH_MAYBE:
+          document.write('<p>your device may have a touch screen.</p>');
+      }
+
+      document.write('<p>screen wise,</p>');
+      if (isMobileScreen()) {
+        document.write('<p>your device is a mobile.</p>');
+      } else if (isTabletScreen()) {
+        document.write('<p>your device is a tablet.</p>');
+      } else {
+        document.write('<p>your device is neither a tablet nor a mobile.');
+      }
+
+    };
+
+    printinfo();
+  </script>
+</body>
+</html>
