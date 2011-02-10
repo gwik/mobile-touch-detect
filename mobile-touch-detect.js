@@ -8,8 +8,8 @@ ORIENTATION_LANDSCAPE = 1;
 MOBILE_MAX_WIDTH_PORTRAIT = 640;
 MOBILE_MAX_WIDTH_LANDSCAPE = 960;
 
-TABLET_MAX_WIDTH_PORTRAIT = 1024;
-TABLET_MAX_WIDTH_LANDSCAPE = 768;
+TABLET_MAX_WIDTH_PORTRAIT = 768;
+TABLET_MAX_WIDTH_LANDSCAPE = 1024;
 
 
 function getScreenDimensions() {
@@ -84,7 +84,7 @@ function isMobileScreen() {
         if (orientation == ORIENTATION_PORTRAIT) {
             return dim.width <= MOBILE_MAX_WIDTH_PORTRAIT;
         } else {
-            return dim.width <= MOBILE_MAX_WIDTH_LANDSCAPE;
+            return dim.height <= MOBILE_MAX_WIDTH_LANDSCAPE;
         }
     }
     return false;
@@ -98,7 +98,7 @@ function isTabletScreen() {
         if (orientation == ORIENTATION_PORTRAIT) {
             return dim.width <= TABLET_MAX_WIDTH_PORTRAIT;
         } else {
-            return dim.width <= TABLET_MAX_WIDTH_LANDSCAPE;
+            return dim.height <= TABLET_MAX_WIDTH_LANDSCAPE;
         }
     }
     return false;

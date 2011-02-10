@@ -37,6 +37,13 @@
         document.write('<p>your device is neither a tablet nor a mobile.');
       }
 
+      document.ontouchstart = function() {
+        if (isTouch() == TOUCH_MAYBE) {
+          document.write(
+            '<p>in fact, you <strong>do</strong> have a touch screen');
+        }
+      };
+
     };
 
     printinfo();
