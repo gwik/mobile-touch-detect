@@ -14,10 +14,7 @@ TABLET_MAX_WIDTH_LANDSCAPE = 1024;
 
 function getScreenDimensions() {
     // may become a bit more complicated.
-    if (screen !== undefined) {
-        return screen;
-    }
-    return undefined;
+    return screen;
 }
 
 function isTouch() {
@@ -49,9 +46,15 @@ function redirect(location_mobile, location_tablet) {
             }
             break;
         case TOUCH_MAYBE:
-            document.ontouchstart = function() {
-                window.location = location_tablet;
-            };
+            if (document.addEventListener !== undefined) {
+                document.addEventListener('touchstart',
+                    function(){window.location = location_tablet;},
+                    true);
+            } else {
+                document.ontouchstart = function() {
+                    window.location = location_tablet;
+                };
+            }
             break;
         default:
             return false;
@@ -80,7 +83,7 @@ function isMobileScreen() {
     var dim = getScreenDimensions();
     var orientation = getOrientation();
 
-    if (dim) {
+    if (dim !== undefined) {
         if (orientation == ORIENTATION_PORTRAIT) {
             return dim.width <= MOBILE_MAX_WIDTH_PORTRAIT;
         } else {
